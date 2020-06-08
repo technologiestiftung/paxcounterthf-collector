@@ -16,8 +16,8 @@
   "devDependencies": {
     "@types/jest": "25.2.1",
     "@types/node": "13.13.5",
-    "@typescript-eslint/eslint-plugin": "2.31.0",
-    "@typescript-eslint/parser": "2.31.0",
+    "@typescript-eslint/eslint-plugin": "2.34.0",
+    "@typescript-eslint/parser": "2.34.0",
     "cz-conventional-changelog": "3.2.0",
     "dotenv-flow": "3.1.0",
     "eslint": "7.2.0",
