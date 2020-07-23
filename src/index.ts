@@ -20,6 +20,7 @@ ttn
         device: payload["dev_id"],
         counter: payload["counter"],
         tod: new Date().toJSON().slice(0, 19).replace(/T/g, " "),
+        fields: payload["payload_fields"],
         payload: payload["payload_raw"],
         metadata: payload["metadata"],
       };
