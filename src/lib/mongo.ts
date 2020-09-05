@@ -1,3 +1,4 @@
+// connects to personal mongodb + defines funtion to store data
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 const user = process.env.MONGODB_USER;
 const password = process.env.MONGODB_PASSWORD;
@@ -5,6 +6,7 @@ const hostname = process.env.MONGODB_HOSTNAME;
 const collection = process.env.MONGODB_COLLECTION;
 const databaseName = process.env.MONGODB_DATABASE;
 
+// importing module "mongodb"
 const MongoClient = require("mongodb").MongoClient;
 
 const uri = `mongodb+srv://${user}:${password}@${hostname}/admin?retryWrites=true&w=majority`;
@@ -29,12 +31,14 @@ async function attachDatabase() {
 
 async function getDatabase() {
   if (!database) await attachDatabase();
-  console.log("db connected");
+  console.log("*** \n db connected \n*** ");
   return database;
 }
 
 export async function insertDocument(data) {
   const database = await getDatabase();
+  if(database){ 
+    try{
   return (
     await database.collection(collectionName).insertOne(data),
     function (err, result) {
@@ -45,6 +49,14 @@ export async function insertDocument(data) {
       console.log(result);
     }
   );
+  }
+  catch (e){
+    console.error(e)
+  } 
+  }
+  else{
+    console.log("There is an error with the MongoDB collection")
+  }
 }
 
 //return eventData array for most recent count of events, by device
